@@ -255,5 +255,18 @@ namespace chatapi.Controllers
             return Ok(result);
         }
 
+
+        [HttpDelete("channels/{conversationSid}/Messages/{sid}")]
+        public IActionResult DeleteConversation([FromRoute] string conversationSid, [FromRoute] string sid)
+        {
+            TwilioClient.Init(accountSid, authToken);
+
+            MessageResource.Delete(
+            pathConversationSid: conversationSid,
+            pathSid: sid);
+
+            return Ok("Deleted");
+        }
+
     }
 }
